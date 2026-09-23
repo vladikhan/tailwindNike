@@ -10,7 +10,12 @@ const ROUTES = [
   "Pricing",
   "Contact",
 ];
-export function Nav({ onClickShoppingBtn }) {
+
+interface NavProps {
+  onClickShoppingBtn: () => void;
+}
+
+export function Nav({ onClickShoppingBtn }: NavProps) {
   const [isMobileMenuShown, setIsMobileMenuShown] =
     useState(false);
   return (
@@ -30,9 +35,7 @@ export function Nav({ onClickShoppingBtn }) {
 
       {/* Menu list */}
       <div
-        className={`${
-          isMobileMenuShown === false && "hidden"
-        } w-full lg:block lg:w-auto`}
+        className={`${isMobileMenuShown === false && "hidden"} w-full lg:block lg:w-auto`}
       >
         <ul className="flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent lg:dark:text-white">
           {ROUTES.map((route, i) => {

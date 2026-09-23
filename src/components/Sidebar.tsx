@@ -1,4 +1,12 @@
-export function Sidebar({ children, isOpen, onClickClose }) {
+import { ReactNode } from "react";
+
+interface SidebarProps {
+  children: ReactNode;
+  isOpen: boolean;
+  onClickClose: () => void;
+}
+
+export function Sidebar({ children, isOpen, onClickClose }: SidebarProps) {
   return (
     <div>
       <div

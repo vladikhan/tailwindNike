@@ -1,9 +1,19 @@
 import { useState } from "react";
-import { QTY, SIZES } from "../constant";
+import { QTY, SIZES } from "../constants/index";
 import { Select } from "./Select";
+import type { Shoe } from "@/constants/index";
 
-export function ShoeDetail({ shoe, onClickAdd }) {
-  const [form, setform] = useState({ qty: null, size: null });
+interface ShoeDetailProps {
+  shoe: Shoe;
+  onClickAdd: (shoe: Shoe, qty: number | null, size: number | null) => void;
+}
+
+export function ShoeDetail({ shoe, onClickAdd }: ShoeDetailProps) {
+  const [form, setForm] = useState<{ qty: number | null; size: number | null }>({
+    qty: null,
+    size: null,
+  });
+
   return (
     <div className="flex flex-col space-y-4 dark:text-white lg:flex-row-reverse">
       {/* Shoe image */}
@@ -26,14 +36,14 @@ export function ShoeDetail({ shoe, onClickAdd }) {
           </div>
           <Select
             onChange={(qty) => {
-              setform({ ...form, qty });
+              setForm((prev) => ({ ...prev, qty: qty as number }));
             }}
             title={"QTY"}
             options={QTY}
           />
           <Select
             onChange={(size) => {
-              setform({ ...form, size });
+              setForm((prev) => ({ ...prev, size: size as number }));
             }}
             title={"SIZE"}
             options={SIZES}

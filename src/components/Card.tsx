@@ -1,4 +1,11 @@
-export function Card({ item, onClick }) {
+import type { Shoe } from "@/constants/index";
+
+interface CardProps {
+  item: Shoe;
+  onClick: (item: Shoe) => void;
+}
+
+export function Card({ item, onClick }: CardProps) {
   return (
     <div
       onClick={() => onClick(item)}

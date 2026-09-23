@@ -1,7 +1,17 @@
-import { CiTrash } from "react-icons/ci";
-import { Select } from "../components/Select";
-import { SIZES, QTY } from "../constant";
-export function CartItem({ item: { product, qty, size } }) {
+import type { Shoe } from "@/constants/index"
+import { CiTrash } from "react-icons/ci"
+import { QTY, SIZES } from "../constants/index"
+import { Select } from "./Select"
+
+interface CartItemProps {
+  item: {
+    product: Shoe;
+    qty: number | null;
+    size: number | null;
+  };
+}
+
+export function CartItem({ item: { product, qty, size } }: CartItemProps) {
   return (
     <div
       className={
@@ -31,7 +41,7 @@ export function CartItem({ item: { product, qty, size } }) {
           <div>
             <div className="font-bold dark:text-white">SIZE</div>
             <Select
-              defaultValue={size}
+              defaultValue={size ?? undefined}
               title=""
               options={SIZES}
               className={"w-16 p-1 pl-2"}
@@ -40,7 +50,7 @@ export function CartItem({ item: { product, qty, size } }) {
           <div>
             <div className="font-bold dark:text-white">QTY</div>
             <Select
-              defaultValue={qty}
+              defaultValue={qty ?? undefined}
               title=""
               options={QTY}
               className={"w-16 p-1 pl-2"}

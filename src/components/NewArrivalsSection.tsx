@@ -1,5 +1,12 @@
 import { Card } from "./Card";
-export function NewArrivalsSection({ items, onClickCard }) {
+import type { Shoe } from "@/constants/index";
+
+interface NewArrivalsSectionProps {
+  items: Shoe[];
+  onClickCard: (shoe: Shoe) => void;
+}
+
+export function NewArrivalsSection({ items, onClickCard }: NewArrivalsSectionProps) {
   return (
     <div className="mt-20">
       <div className="flex-center">
