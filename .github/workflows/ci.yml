@@ -17,7 +17,6 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-style: '20'
           node-version: '20'
           cache: 'npm'
 
@@ -25,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Type check (TypeScript)
-        run: npx -p typescript tsc --noEmit
+        run: npx --no-install tsc --noEmit
 
       - name: Build project
         run: npm run build
