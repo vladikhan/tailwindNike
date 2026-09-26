@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { QTY, SIZES } from "../constants/index";
-import { Select } from "./Select";
-import type { Shoe } from "@/constants/index";
+import type { Shoe } from "@/constants/index"
+import { useState } from "react"
+import { QTY, SIZES } from "../constants/index"
+import { Select } from "./Select"
 
 interface ShoeDetailProps {
   shoe: Shoe;
-  onClickAdd: (shoe: Shoe, qty: number | null, size: number | null) => void;
+  onClickAdd: (shoe: Shoe, qty: number | undefined, size: number | undefined) => void;
 }
 
 export function ShoeDetail({ shoe, onClickAdd }: ShoeDetailProps) {
-  const [form, setForm] = useState<{ qty: number | null; size: number | null }>({
-    qty: null,
-    size: null,
+  const [form, setForm] = useState<{ qty: number | undefined; size: number | undefined }>({
+    qty: undefined,
+    size: undefined,
   });
 
   return (
@@ -36,14 +36,14 @@ export function ShoeDetail({ shoe, onClickAdd }: ShoeDetailProps) {
           </div>
           <Select
             onChange={(qty) => {
-              setForm((prev) => ({ ...prev, qty: qty as number }));
+              setForm((prev) => ({ ...prev, qty: Number(qty) }));
             }}
             title={"QTY"}
             options={QTY}
           />
           <Select
             onChange={(size) => {
-              setForm((prev) => ({ ...prev, size: size as number }));
+              setForm((prev) => ({ ...prev, size: Number(size) }));
             }}
             title={"SIZE"}
             options={SIZES}
@@ -51,12 +51,13 @@ export function ShoeDetail({ shoe, onClickAdd }: ShoeDetailProps) {
         </div>
         {/* Shoe buttons and links */}
         <div className="space-x-10">
-          <button
-            onClick={() => onClickAdd(shoe, form.qty, form.size)}
-            className="btn-press-anim h-14 w-44 bg-black text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white  dark:text-black"
-          >
-            Add to bag
-          </button>
+        <button
+          onClick={() => onClickAdd(shoe, form.qty, form.size)}
+          disabled={form.qty === undefined || form.size === undefined}
+          className="btn-press-anim h-14 w-44 bg-black text-white hover:bg-gray-900 active:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white dark:text-black"
+        >
+          Add to bag
+        </button>
           <a
             href="#"
             className="text-lg font-bold underline underline-offset-4"
