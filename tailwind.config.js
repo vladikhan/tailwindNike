@@ -10,6 +10,7 @@ export default {
           50: "#171E2C",
           500: "#0D1120",
         },
+        "nike-volt": "#FFC600",
       },
       keyframes: {
         wiggle: {

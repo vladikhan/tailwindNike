@@ -1,26 +1,30 @@
-import type { Shoe } from "@/constants/index"
+import type { CartItem } from "@/types/cart"
 import { CiTrash } from "react-icons/ci"
 import { QTY, SIZES } from "../constants/index"
 import { Select } from "./Select"
 
 interface CartItemProps {
-  item: {
-    product: Shoe;
-    qty: number | null;
-    size: number | null;
-  };
+  item: CartItem;
+  onRemove: () => void;
+  onUpdateQty: (qty: number) => void;
+  onUpdateSize: (size: number) => void;
 }
 
-export function CartItem({ item: { product, qty, size } }: CartItemProps) {
+export function CartItem({
+  item: { product, qty, size },
+  onRemove,
+  onUpdateQty,
+  onUpdateSize,
+}: CartItemProps) {
   return (
     <div
       className={
-        "dark:hover:bg-night-50 cursor-pointer space-y-2 bg-gray-50 p-2 hover:bg-[#DAFFA2] dark:bg-transparent"
+        "dark:bg-night-50 cursor-pointer space-y-2 bg-gray-50 p-2 hover:bg-[#DAFFA2] dark:bg-transparent"
       }
     >
       <div className="flex  space-x-2 ">
         {/* Image */}
-        <img className="h-24" src={product.src} />
+        <img className="h-24" src={product.src} alt={product.title} />
         <div className="space-y-2">
           {/* Title & Description */}
           <div className="font-bold dark:text-white">
@@ -41,26 +45,32 @@ export function CartItem({ item: { product, qty, size } }: CartItemProps) {
           <div>
             <div className="font-bold dark:text-white">SIZE</div>
             <Select
-              defaultValue={size ?? undefined}
+              defaultValue={size}
               title=""
               options={SIZES}
               className={"w-16 p-1 pl-2"}
+              onChange={(value) => onUpdateSize(Number(value))}
             />
           </div>
           <div>
             <div className="font-bold dark:text-white">QTY</div>
             <Select
-              defaultValue={qty ?? undefined}
+              defaultValue={qty}
               title=""
               options={QTY}
               className={"w-16 p-1 pl-2"}
+              onChange={(value) => onUpdateQty(Number(value))}
             />
           </div>
         </div>
-        <button>
+        <button
+          onClick={onRemove}
+          aria-label={`Remove ${product.title} from cart`}
+          className="group rounded-full p-2 transition-colors hover: 100 focus:outline-none focus:ring-2 focus: 100 dark:hover: 700"
+        >
           <CiTrash
             size={25}
-            className="text-black dark:text-white"
+            className="text-black transition-transform duration-200 group-hover:scale-125 dark:text-white"
           />
         </button>
       </div>

@@ -1,4 +1,4 @@
-import type { Shoe } from "@/constants/index";
+import type { Shoe } from "@/constants/index"
 
 interface CardProps {
   item: Shoe;
@@ -7,12 +7,14 @@ interface CardProps {
 
 export function Card({ item, onClick }: CardProps) {
   return (
-    <div
+    <button
       onClick={() => onClick(item)}
-      className={`${item.className} max-w-xl transform cursor-pointer transition hover:scale-105`}
+      aria-label={`View ${item.title}`}
+      className={`${item.className} relative min-h-[320px] max-w-xl transform cursor-pointer rounded-2xl text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
     >
       <div className="p-8">
-        <div className="text-2xl font-bold">{item.title}</div>
+        <div className="text-2xl font-bold tracking-tight">{item.title}</div>
+        <div className="mt-2 text-lg font-semibold">{item.price} $</div>
         <div className="mt-10 font-semibold underline underline-offset-4">
           SHOP NOW +
         </div>
@@ -21,6 +23,6 @@ export function Card({ item, onClick }: CardProps) {
         className="absolute left-[50%] top-5 h-40"
         src={item.src}
       />
-    </div>
+    </button>
   );
 }

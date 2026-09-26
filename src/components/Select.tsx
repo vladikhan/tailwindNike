@@ -1,12 +1,12 @@
-import { IoIosArrowDown } from "react-icons/io";
-import { twMerge } from "tw-merge";
+import { IoIosArrowDown } from "react-icons/io"
+import { twMerge } from "tw-merge"
 
 interface SelectProps {
   title: string;
   options: string[] | number[];
   className?: string;
-  defaultValue?: string | number;
-  onChange?: (value: string | number) => void;
+  defaultValue?: string | number | undefined;
+  onChange?: (value: string) => void;
 }
 
 export function Select({
@@ -22,14 +22,14 @@ export function Select({
         onChange={(e) => onChange(e.target.value)}
         defaultValue={defaultValue ?? ""}
         className={twMerge(
-          `w-24 appearance-none border border-gray-300 bg-white p-4  ${className}`,
+          `w-24 appearance-none border border-gray-300 bg-white p-4  ${className}`
         )}
       >
         <option value="" disabled hidden>
           {title}
         </option>
         {options.map((option) => (
-          <option value={option} key={option}>
+          <option key={option} value={option}>
             {option}
           </option>
         ))}
