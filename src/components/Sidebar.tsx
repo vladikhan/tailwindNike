@@ -10,7 +10,7 @@ export function Sidebar({ children, isOpen, onClickClose }: SidebarProps) {
   return (
     <div>
       <div
-        className={`dark:bg-night fixed right-0 top-0 z-50 h-screen w-full transform overflow-y-auto bg-white p-5 shadow-lg transition duration-300 md:w-[50%] lg:w-[35%] ${
+        className={`dark:bg-night fixed right-0 top-0 z-50 h-[100dvh] w-full transform overflow-y-auto bg-white p-5 shadow-lg transition duration-300 md:w-[50%] lg:w-[35%] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -26,7 +26,7 @@ export function Sidebar({ children, isOpen, onClickClose }: SidebarProps) {
       {isOpen && (
         <div
           onClick={onClickClose}
-          className="fixed left-0 top-0 z-20 h-full w-full bg-black opacity-50"
+          className="fixed left-0 top-0 z-20 h-[100dvh] w-full bg-black opacity-50"
         />
       )}
     </div>

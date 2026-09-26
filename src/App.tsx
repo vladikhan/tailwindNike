@@ -34,7 +34,7 @@ export function App() {
   };
 
   return (
-    <div className={`${isDarkMode ? "dark:bg-night" : ""} animate-fadeIn p-10 xl:px-24`}>
+    <div className={`${isDarkMode ? "dark:bg-night" : ""} animate-fadeIn p-10 pb-24 xl:px-24`}>
       <Nav onClickShoppingBtn={() => setIsSidebarOpen(true)} />
       <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
       <NewArrivalsSection
@@ -52,14 +52,15 @@ export function App() {
           onUpdateSize={updateSize}
         />
       </Sidebar>
-      <div className="fixed bottom-4 right-4">
-        <button
-          onClick={toggleDarkMode}
-          className="bg-night-50 dark:text-night rounded-full px-4 py-2 text-white shadow-lg dark:bg-white"
-        >
-          <BiSun className="hidden dark:block" />
-          <BiMoon className="dark:hidden" />
-        </button>
+      <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8">
+      <button
+        onClick={toggleDarkMode}
+        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+        className="rounded-full bg-[#171E2C] px-4 py-2 text-white shadow-lg transition-colors duration-300 dark:bg-white dark:text-[#171E2C]"
+      >
+        <BiSun className="hidden dark:block" />
+        <BiMoon className="dark:hidden" />
+      </button>
       </div>
     </div>
   );

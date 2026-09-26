@@ -64,7 +64,7 @@ export function Nav({ onClickShoppingBtn }: NavProps) {
       <button
         onClick={onClickShoppingBtn}
         aria-label="Open cart"
-        className="btn-press-anim fixed bottom-4 left-4 lg:static lg:mr-8"
+        className="btn-press-anim fixed bottom-4 left-4 sm:bottom-6 sm:left-6 lg:static lg:mr-8 lg:bottom-auto lg:left-auto"
       >
         <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
           <TbShoppingBag />

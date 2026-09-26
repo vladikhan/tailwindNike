@@ -63,10 +63,14 @@ export function CartItem({
             />
           </div>
         </div>
-        <button onClick={onRemove} aria-label={`Remove ${product.title} from cart`}>
+        <button
+          onClick={onRemove}
+          aria-label={`Remove ${product.title} from cart`}
+          className="group rounded-full p-2 transition-colors hover: 100 focus:outline-none focus:ring-2 focus: 100 dark:hover: 700"
+        >
           <CiTrash
             size={25}
-            className="text-black dark:text-white"
+            className="text-black transition-transform duration-200 group-hover:scale-125 dark:text-white"
           />
         </button>
       </div>
