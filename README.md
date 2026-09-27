@@ -1,6 +1,12 @@
-# Tailwind Shoes E-commerce
+# Nike Shoe Store — E-commerce UI
 
-A modern, responsive e-commerce shoe store built with React 18, TypeScript, Tailwind CSS, and Vite.
+A responsive e-commerce shoe store built with React 18, TypeScript, Tailwind CSS, and Vite. Originally based on a course project, substantially refactored for type safety, accessibility, state management, and performance.
+
+## Screenshots
+
+| Light Mode | Dark Mode |
+|---|---|
+| ![Light mode](docs/screenshot-light.png) | ![Dark mode](docs/screenshot-dark.png) |
 
 ## Tech Stack
 
@@ -11,62 +17,66 @@ A modern, responsive e-commerce shoe store built with React 18, TypeScript, Tail
 
 ## Features
 
-- Browse a Nike shoe collection with vibrant colors and detailed descriptions
-- Select shoe size and quantity before adding to cart
-- View cart items in a slide-out sidebar
-- Add/remove items from cart (quantity and size selection)
-- Dark/Light mode toggle with local storage persistence
-- Fully responsive design for mobile, tablet, and desktop
-- Smooth animations and hover effects
-- Accessible UI with semantic HTML and ARIA attributes
-- Product cards with hover zoom effect
-- New arrivals section showcasing featured products
+- Browse a Nike shoe collection with size and quantity selection
+- Fully functional cart: add, update quantity/size, and remove items, with live total price calculation (checkout flow not implemented — out of scope for this demo)
+- Slide-out cart sidebar (closable via button or backdrop click)
+- Dark/light mode with `localStorage` persistence and smooth color transitions
+- Fully responsive layout, including fixed UI elements adapted per breakpoint
+- Accessible UI: semantic buttons, ARIA labels, keyboard-navigable controls, sufficient touch targets
+- Optimized product images (WebP, ~70% smaller than original PNGs)
+
+## Architecture Notes
+
+- **Cart state** is managed via `useReducer` (`src/reducers/cartReducer.ts`) with explicit `ADD` / `REMOVE` / `UPDATE_QTY` / `UPDATE_SIZE` actions, instead of scattered `useState` calls — keeps state transitions predictable and easy to test.
+- **Shared types** (`src/types/cart.ts`) are extracted to avoid duplicated interfaces across components.
+- **`useDarkMode`** is a custom hook encapsulating theme persistence, using a lazy `useState` initializer to avoid a flash of the wrong theme on load, with `try/catch` around `localStorage` for Safari private-mode safety.
+- **Type-aware linting** via `@typescript-eslint` with `recommended-requires-type-checking` and `consistent-type-imports`, catching issues plain ESLint would miss.
 
 ## UI Overview
 
-The application consists of several key sections:
-
-1. **Navigation Bar** - Logo, menu links (Home, About, Services, Pricing, Contact), and cart button
-2. **Product Display** - Main shoe image with size/quantity selectors and "Add to bag" button
-3. **New Arrivals Section** - Grid of featured shoes with hover effects
-4. **Sidebar Cart** - Slide-out cart showing selected items with total price and checkout option
-5. **Dark Mode Toggle** - Fixed button at bottom right to switch between light and dark themes
+1. **Navigation Bar** — logo, menu links, and cart button (mobile: hamburger menu)
+2. **Product Display** — hero product view with size/quantity selection and "Add to bag" CTA
+3. **New Arrivals Section** — grid of featured shoes with hover effects
+4. **Sidebar Cart** — slide-out cart with per-item controls and running total
+5. **Dark Mode Toggle** — fixed button, responsive positioning across breakpoints
 
 ## Project Directory Structure
 
-```
-tailwind-shoes/
+tailwindNike/
 ├── public/
-│   └── vite.svg
+│ └── vite.svg
 ├── src/
-│   ├── assets/                 # Static images and SVGs
-│   │   ├── nike-logo.svg
-│   │   ├── lines.png
-│   │   └── shoe images...
-│   ├── components/             # Reusable UI components
-│   │   ├── Card.tsx
-│   │   ├── Cart.tsx
-│   │   ├── CartItem.tsx
-│   │   ├── Nav.tsx
-│   │   ├── NewArrivalsSection.tsx
-│   │   ├── Select.tsx
-│   │   ├── Sidebar.tsx
-│   │   └── ShoeDetail.tsx
-│   ├── constants/              # Type-safe constants and data
-│   │   └── index.ts
-│   ├── App.tsx                 # Main application component
-│   ├── index.tsx               # Entry point
-│   ├── index.css               # Tailwind CSS directives and custom utilities
-│   └── ...                     # Configuration files
-├ .gitignore                  # Git ignore rules
-├── index.html                  # HTML template
-├── package.json                # Dependencies and scripts
+│ ├── assets/ # Images (WebP) and SVGs
+│ ├── components/
+│ │ ├── Card.tsx
+│ │ ├── Cart.tsx
+│ │ ├── CartItem.tsx
+│ │ ├── Nav.tsx
+│ │ ├── NewArrivalsSection.tsx
+│ │ ├── Select.tsx
+│ │ ├── Sidebar.tsx
+│ │ └── ShoeDetail.tsx
+│ ├── constants/
+│ │ └── index.ts
+│ ├── hooks/
+│ │ └── useDarkMode.ts
+│ ├── reducers/
+│ │ └── cartReducer.ts
+│ ├── types/
+│ │ └── cart.ts
+│ ├── App.tsx
+│ ├── index.tsx
+│ ├── index.css
+│ └── ...
+├── .gitignore
+├── index.html
+├── package.json
 ├── README.md
-├── tsconfig.json               # TypeScript configuration
-├── tsconfig.node.json          # TypeScript configuration for Vite config
-├── vite.config.ts              # Vite configuration with TypeScript support
-└── yarn.lock                   # Dependency lockfile (if using yarn)
-```
+├── tsconfig.json
+├── tsconfig.node.json
+├── tailwind.config.js
+└── vite.config.ts
+
 
 ## Local Setup & Build Instructions
 
@@ -77,53 +87,42 @@ tailwind-shoes/
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/tailwind-shoes.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd tailwind-shoes
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/vladikhan/tailwindNike.git
+cd tailwindNike
+npm install
+```
 
 ### Development Server
 
-To start the development server with hot reload:
 ```bash
 npm run dev
 ```
-The application will be available at `http://localhost:5173`.
+Available at `http://localhost:5173`.
 
 ### Building for Production
 
-To create a production build:
 ```bash
 npm run build
 ```
-The built files will be in the `dist/` directory.
+Output in `dist/`.
 
 ### Preview Production Build
 
-To preview the production build locally:
 ```bash
 npm run preview
 ```
 
-### Linting
+### Linting & Type Checking
 
-To run ESLint:
 ```bash
 npm run lint
+npm run typecheck
 ```
-*(Note: Add a lint script to package.json if not present)*
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Feel free to submit a Pull Request.
 
 ## License
 
