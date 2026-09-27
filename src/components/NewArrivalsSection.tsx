@@ -1,5 +1,5 @@
-import { Card } from "./Card";
-import type { Shoe } from "@/constants/index";
+import type { Shoe } from "@/constants/index"
+import { Card } from "./Card"
 
 interface NewArrivalsSectionProps {
   items: Shoe[];
@@ -14,7 +14,7 @@ export function NewArrivalsSection({ items, onClickCard }: NewArrivalsSectionPro
           NEW ARRIVALS
         </div>
       </div>
-      <div className="mt-10 grid grid-cols-1 justify-between gap-x-6 gap-y-24 md:grid-cols-2 xl:grid-cols-[repeat(3,25%)]">
+      <div className="mt-20 mb-8 md:mb-20 grid grid-cols-1 justify-between gap-x-6 gap-y-8 md:grid-cols-2 md:gap-y-24 xl:grid-cols-[repeat(3,25%)]">
         {items.map((item) => (
           <Card key={item.id} item={item} onClick={onClickCard} />
         ))}
