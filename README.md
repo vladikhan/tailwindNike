@@ -42,6 +42,7 @@ A responsive e-commerce shoe store built with React 18, TypeScript, Tailwind CSS
 
 ## Project Directory Structure
 
+```text
 tailwindNike/
 ├── public/
 │   └── vite.svg
@@ -76,6 +77,7 @@ tailwindNike/
 ├── tsconfig.node.json
 ├── tailwind.config.js
 └── vite.config.ts
+```
 
 
 ## Local Setup & Build Instructions
