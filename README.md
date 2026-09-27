@@ -44,30 +44,30 @@ A responsive e-commerce shoe store built with React 18, TypeScript, Tailwind CSS
 
 tailwindNike/
 ├── public/
-│ └── vite.svg
+│   └── vite.svg
 ├── src/
-│ ├── assets/ # Images (WebP) and SVGs
-│ ├── components/
-│ │ ├── Card.tsx
-│ │ ├── Cart.tsx
-│ │ ├── CartItem.tsx
-│ │ ├── Nav.tsx
-│ │ ├── NewArrivalsSection.tsx
-│ │ ├── Select.tsx
-│ │ ├── Sidebar.tsx
-│ │ └── ShoeDetail.tsx
-│ ├── constants/
-│ │ └── index.ts
-│ ├── hooks/
-│ │ └── useDarkMode.ts
-│ ├── reducers/
-│ │ └── cartReducer.ts
-│ ├── types/
-│ │ └── cart.ts
-│ ├── App.tsx
-│ ├── index.tsx
-│ ├── index.css
-│ └── ...
+│   ├── assets/                 # Images (WebP) and SVGs
+│   ├── components/
+│   │   ├── Card.tsx
+│   │   ├── Cart.tsx
+│   │   ├── CartItem.tsx
+│   │   ├── Nav.tsx
+│   │   ├── NewArrivalsSection.tsx
+│   │   ├── Select.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── ShoeDetail.tsx
+│   ├── constants/
+│   │   └── index.ts
+│   ├── hooks/
+│   │   └── useDarkMode.ts
+│   ├── reducers/
+│   │   └── cartReducer.ts
+│   ├── types/
+│   │   └── cart.ts
+│   ├── App.tsx
+│   ├── index.tsx
+│   ├── index.css
+│   └── ...
 ├── .gitignore
 ├── index.html
 ├── package.json
